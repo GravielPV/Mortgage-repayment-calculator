@@ -1,0 +1,30 @@
+.carta{
+    width: 500px;
+    height: 400px;
+display: flex;
+margin: 20px auto;
+
+ overflow: hidden;   
+}
+
+.lado{
+    width: 50%;                  /* 2 columnas iguales */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.izquierdo{
+display: flex;
+    background-color: rgb(255, 255, 255);
+}
+
+.derecho{
+
+    background-color: hsl(202, 55%, 16%);
+    color: white;
+}
+
+.resultado{
+    display: none;
+}

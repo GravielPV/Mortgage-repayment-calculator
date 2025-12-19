@@ -1,0 +1,51 @@
+.carta{
+    width: 800px;
+    height: 400px;
+display: flex;
+margin: 20px auto;
+border-radius: 3%;
+ overflow: hidden;   
+ justify-content: space-between;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.lado{
+     width: 50%; 
+    display: flex;
+    flex-direction: column;
+}
+
+.izquierdo{
+margin: auto;
+    background-color: rgb(202, 49, 49);
+}
+
+.derecho{
+
+    background-color: hsl(202, 55%, 16%);
+    color: white;
+}
+
+.resultado{
+    display: none;
+}
+
+a{
+   position: relative;
+    top: -40px;
+    left: 270px;
+   
+    }
+
+    button{
+        position: relative;
+        top: 60px;
+        left: 150px;
+        padding: 10px 20px;
+        background-color: hsl(61, 70%, 52%);
+        border: none;
+        color: hsl(200, 10%, 18%);
+        border-radius: 5px;
+        cursor: pointer;
+    }

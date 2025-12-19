@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mortgage Calculator</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      padding: 40px;
+    }
+
+    .card {
+      max-width: 420px;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .radios {
+      margin-top: 15px;
+    }
+
+    .radios label {
+      font-weight: normal;
+      margin-right: 15px;
+    }
+
+    .resultado {
+      margin-top: 25px;
+      padding: 15px;
+      background: #f1f9f6;
+      border-radius: 8px;
+      display: none;
+    }
+
+    .resultado p {
+      margin: 6px 0;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h2>Mortgage Calculator</h2>
+
+    <label for="input-mortgage">Monto del préstamo</label>
+    <input type="number" id="input-mortgage" placeholder="Ej: 1000000">
+
+    <label for="input-term">Plazo (años)</label>
+    <input type="number" id="input-term" placeholder="Ej: 30">
+
+    <label for="input-interest">Interés anual (%)</label>
+    <input type="number" id="input-interest" placeholder="Ej: 14">
+
+    <div class="radios">
+      <label>
+        <input type="radio" name="type" id="repayment">
+        Repayment
+      </label>
+
+      <label>
+        <input type="radio" name="type" id="interest-only">
+        Interest Only
+      </label>
+    </div>
+
+    <div class="resultado" id="resultado">
+      <p id="pago-mensual"></p>
+      <p id="pago-total"></p>
+    </div>
+  </div>
+
+  <script>
+    const yearsInput = document.getElementById("input-term");
+    const montoInput = document.getElementById("input-mortgage");
+    const interesInput = document.getElementById("input-interest");
+
+    const repayment = document.getElementById("repayment");
+    const interestOnly = document.getElementById("interest-only");
+
+    const resultadoBox = document.getElementById("resultado");
+    const pagoMensualText = document.getElementById("pago-mensual");
+    const pagoTotalText = document.getElementById("pago-total");
+
+    repayment.addEventListener("change", calcular);
+    interestOnly.addEventListener("change", calcular);
+    yearsInput.addEventListener("input", calcular);
+    montoInput.addEventListener("input", calcular);
+    interesInput.addEventListener("input", calcular);
+
+    function formatoRD(valor) {
+      return new Intl.NumberFormat("es-DO", {
+        style: "currency",
+        currency: "DOP",
+        minimumFractionDigits: 2,
+      }).format(valor);
+    }
+
+    function calcular() {
+      const years = Number(yearsInput.value);
+      const monto = Number(montoInput.value);
+      const interes = Number(interesInput.value) / 100;
+
+      if (!years || !monto || !interes) {
+        resultadoBox.style.display = "none";
+        return;
+      }
+
+      if (!repayment.checked && !interestOnly.checked) {
+        resultadoBox.style.display = "none";
+        return;
+      }
+
+      const r = interes / 12;
+      const n = years * 12;
+
+      let pagoMensual = 0;
+      let pagoTotal = 0;
+
+      if (repayment.checked) {
+        pagoMensual =
+          (monto * r * Math.pow(1 + r, n)) /
+          (Math.pow(1 + r, n) - 1);
+
+        pagoTotal = pagoMensual * n;
+      }
+
+      if (interestOnly.checked) {
+        pagoMensual = monto * r;
+        pagoTotal = pagoMensual * n;
+      }
+
+      pagoMensualText.textContent =
+        "Pago mensual: " + formatoRD(pagoMensual);
+
+      pagoTotalText.textContent =
+        "Pago total: " + formatoRD(pagoTotal);
+
+      resultadoBox.style.display = "block";
+    }
+  </script>
+
+</body>
+</html>

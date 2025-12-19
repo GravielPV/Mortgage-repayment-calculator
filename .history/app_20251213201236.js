@@ -1,0 +1,21 @@
+
+let years = document.getElementById('input-term');
+let monto = document.getElementById('input-mortgage')
+let interes = document.getElementById('input-interest')
+
+function calcular(){
+
+
+     let r = interes / 12;
+     let n = years * 12;
+     let pagoMensual = monto * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+
+console.log("Pago mensual: " + Number(pagoMensual.toFixed(2)));
+
+
+
+}
+
+
+
+

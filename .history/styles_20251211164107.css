@@ -1,0 +1,10 @@
+.carta{
+    width: 300px;
+    height: 300px;
+
+}
+
+.lado{
+    width: 50%;
+    display: flex;
+}

@@ -1,0 +1,36 @@
+.carta{
+    width: 700px;
+    height: 400px;
+display: flex;
+margin: 20px auto;
+border-radius: 3%;
+border: 1px solid rgb(0, 0, 0);
+ overflow: hidden;   
+}
+
+.lado{
+    width: 50%;                 
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+
+  
+}
+
+.izquierdo{
+display: flex;
+    background-color: rgb(255, 255, 255);
+}
+
+.derecho{
+
+    background-color: hsl(202, 55%, 16%);
+    color: white;
+}
+
+.resultado{
+    display: none;
+}

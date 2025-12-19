@@ -1,0 +1,17 @@
+.carta{
+    width: 500px;
+    height: 400px;
+display: flex;
+margin: 20px auto;
+background-color: red;
+}
+
+.lado{
+    width: 50%;
+    display: flex;
+}
+
+.izquierdo{
+display: flex;
+    background-color: blue;
+}
